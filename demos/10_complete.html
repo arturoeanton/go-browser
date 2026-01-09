@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demo 10: Página Completa</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        header {
+            background-color: #1e293b;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        header a {
+            color: #38bdf8;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        h1 {
+            color: #f472b6;
+            font-size: 42px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #38bdf8;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #94a3b8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+        }
+
+        .feature {
+            background-color: #1e293b;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            color: #a78bfa;
+        }
+
+        .cta {
+            background-color: #8b5cf6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer {
+            background-color: #1e293b;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <strong style="color: #f472b6;">GoBrowser</strong>
+        <a href="01_flexbox.html">Flexbox</a>
+        <a href="02_grid.html">Grid</a>
+        <a href="03_typography.html">Typography</a>
+        <a href="04_colors.html">Colors</a>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>GoBrowser Demo</h1>
+            <p>Un browser moderno construido desde cero en Go</p>
+        </div>
+
+        <h2>Características</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Flexbox</h3>
+                <p>Layout flexible con row y column</p>
+            </div>
+            <div class="feature">
+                <h3>CSS Grid</h3>
+                <p>Layouts de cuadrícula poderosos</p>
+            </div>
+            <div class="feature">
+                <h3>Colores CSS</h3>
+                <p>Soporte completo de colores</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>¿Listo para explorar?</h2>
+            <p>Navegá las demos para ver todas las capacidades</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>GoBrowser 2024 - Construido con Go + Ebiten</p>
+        <p>CSS Engine profesional con Flexbox, Grid y más</p>
+    </footer>
+</body>
+
+</html>

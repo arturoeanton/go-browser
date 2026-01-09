@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demo 1: Flexbox Layout</title>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: #eaeaea;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #0f0f23;
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #64b5f6;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e94560;
+            text-align: center;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .flex-item {
+            background-color: #16213e;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <strong style="color: #e94560;">Demos:</strong>
+        <a href="01_flexbox.html">Flexbox</a>
+        <a href="02_grid.html">Grid</a>
+        <a href="03_typography.html">Typography</a>
+        <a href="04_colors.html">Colors</a>
+        <a href="05_links.html">Links</a>
+        <a href="06_margins.html">Margins</a>
+        <a href="07_lists.html">Lists</a>
+        <a href="08_cards.html">Cards</a>
+        <a href="10_complete.html">Complete</a>
+    </nav>
+    <main>
+        <h1>Flexbox Demo</h1>
+        <p style="text-align: center;">Flex row y column layout</p>
+
+        <h2>Flex Row</h2>
+        <div class="flex-container">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+
+        <h2>Flex Column</h2>
+        <div class="flex-column">
+            <div class="flex-item">Columna 1</div>
+            <div class="flex-item">Columna 2</div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SpiderGopher JS Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        h1 {
+            color: #ffd700;
+        }
+
+        h2 {
+            color: #87ceeb;
+            margin-top: 24px;
+        }
+
+        .output {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: monospace;
+            min-height: 60px;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .info {
+            color: #60a5fa;
+        }
+
+        button {
+            background: #ffd700;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 8px 4px;
+        }
+
+        button:hover {
+            background: #ffed4a;
+        }
+
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        .pending {
+            background: #f59e0b;
+        }
+
+        .ready {
+            background: #22c55e;
+        }
+
+        #counter-display {
+            font-size: 48px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🕷️ SpiderGopher JavaScript Demo</h1>
+        <p>This page tests JavaScript execution in GoBrowser using SpiderGopher engine.</p>
+
+        <div id="status" class="status pending">⏳ Loading...</div>
+
+        <h2>1. DOM Access Tests</h2>
+        <div class="output">
+            <div id="dom-output">Waiting for tests...</div>
+        </div>
+
+        <h2>2. textContent/innerHTML Setter</h2>
+        <div class="output">
+            <p id="dynamic-text">Original text - will be changed by JS!</p>
+        </div>
+
+        <h2>3. Interactive Counter</h2>
+        <div id="counter-display">0</div>
+        <button id="btn-increment">➕ Increment</button>
+        <button id="btn-decrement">➖ Decrement</button>
+        <button id="btn-reset">🔄 Reset</button>
+
+        <h2>4. Async Operations</h2>
+        <div class="output">
+            <div id="async-output">Waiting for async...</div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // SpiderGopher Demo - JavaScript Tests
+        // ============================================
+
+        console.log("🚀 SpiderGopher Demo Starting...");
+
+        // --- Test 1: DOM Access ---
+        var domOutput = document.getElementById("dom-output");
+        var results = [];
+
+        // Test getElementById
+        var status = document.getElementById("status");
+        results.push("✓ getElementById: " + (status ? "FOUND" : "FAILED"));
+
+        // Test querySelector
+        var h1 = document.querySelector("h1");
+        results.push("✓ querySelector h1: " + (h1 ? h1.textContent : "FAILED"));
+
+        // Test querySelectorAll
+        var buttons = document.querySelectorAll("button");
+        results.push("✓ querySelectorAll buttons: " + buttons.length + " found");
+
+        // Test body access
+        results.push("✓ document.body: " + (document.body ? "EXISTS" : "FAILED"));
+
+        // Update DOM with results
+        if (domOutput) {
+            domOutput.textContent = results.join(" | ");
+        }
+        console.log("DOM tests complete:", results.length, "passed");
+
+        // --- Test 2: textContent Setter ---
+        var dynamicText = document.getElementById("dynamic-text");
+        if (dynamicText) {
+            dynamicText.textContent = "✅ Text changed by JavaScript!";
+            console.log("textContent setter: SUCCESS");
+        }
+
+        // --- Test 3: Counter with addEventListener ---
+        var count = 0;
+        var counterDisplay = document.getElementById("counter-display");
+        var btnIncrement = document.getElementById("btn-increment");
+        var btnDecrement = document.getElementById("btn-decrement");
+        var btnReset = document.getElementById("btn-reset");
+
+        function updateCounter() {
+            if (counterDisplay) {
+                counterDisplay.textContent = count.toString();
+            }
+            console.log("Counter updated to:", count);
+        }
+
+        if (btnIncrement) {
+            btnIncrement.addEventListener("click", function () {
+                count = count + 1;
+                // Re-fetch element inside callback to ensure we have valid reference
+                var display = document.getElementById("counter-display");
+                if (display) {
+                    display.textContent = count.toString();
+                    console.log("Set textContent to:", count);
+                }
+                console.log("Counter updated to:", count);
+            });
+            console.log("✓ addEventListener on increment button");
+        }
+
+        if (btnDecrement) {
+            btnDecrement.addEventListener("click", function () {
+                count = count - 1;
+                updateCounter();
+            });
+            console.log("✓ addEventListener on decrement button");
+        }
+
+        if (btnReset) {
+            btnReset.addEventListener("click", function () {
+                count = 0;
+                updateCounter();
+            });
+            console.log("✓ addEventListener on reset button");
+        }
+
+        // --- Test 4: Async with setTimeout ---
+        var asyncOutput = document.getElementById("async-output");
+
+        setTimeout(function () {
+            if (asyncOutput) {
+                asyncOutput.textContent = "⏰ setTimeout fired after 500ms!";
+            }
+            console.log("setTimeout: SUCCESS");
+        }, 500);
+
+        setTimeout(function () {
+            if (asyncOutput) {
+                asyncOutput.textContent = asyncOutput.textContent + " | 🎉 Second timeout at 1000ms!";
+            }
+        }, 1000);
+
+        // --- Update status to ready ---
+        if (status) {
+            status.textContent = "✅ SpiderGopher Ready!";
+            status.className = "status ready";
+        }
+
+        console.log("📋 All initialization complete!");
+        console.log("👆 Click the buttons to test event handlers!");
+    </script>
+</body>
+
+</html>
